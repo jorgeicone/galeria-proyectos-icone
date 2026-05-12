@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Proyectos de Mis Estudiantes — Jorge Hugo Pérez | ICONE ialabs</title>
-  <meta name="description" content="Proyectos reales de FinTech, IA, EdTech, AgroTech, ClimateTech y DeepTech creados por estudiantes de Jorge Hugo Pérez en EAN, Politécnico Grancolombiano, BPro/SENA y más." />
+  <meta name="description" content="Proyectos reales de FinTech, IA, EdTech, AgroTech, ClimateTech y DeepTech creados por estudiantes de Jorge Hugo Pérez en EAN y Politécnico Grancolombiano." />
   <meta property="og:title" content="Lo que construyen mis estudiantes — Jorge Hugo Pérez" />
   <meta property="og:description" content="Proyectos reales de FinTech, IA, EdTech, AgroTech, ClimateTech y DeepTech." />
   <meta property="og:type" content="website" />
@@ -512,6 +512,74 @@
     ::-webkit-scrollbar-thumb:hover { background: rgba(0,212,255,0.5); }
 
     /* ============================================
+       Floating Sidebar Nav
+    ============================================ */
+    .side-nav {
+      position: fixed;
+      right: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+    .side-nav-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      border: 1px solid rgba(0,212,255,0.22);
+      background: rgba(5,13,31,0.85);
+      backdrop-filter: blur(10px);
+      color: var(--text-muted);
+      font-size: 14px;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: var(--transition);
+      text-decoration: none;
+      position: relative;
+    }
+    .side-nav-btn:hover {
+      border-color: var(--cyan);
+      color: var(--cyan);
+      box-shadow: 0 0 14px rgba(0,212,255,0.3);
+      transform: scale(1.1);
+    }
+    .side-nav-btn.active-cat {
+      border-color: var(--cyan);
+      color: var(--cyan);
+      background: rgba(0,212,255,0.12);
+    }
+    .side-nav-sep {
+      width: 1px;
+      height: 18px;
+      background: rgba(0,212,255,0.15);
+      margin: 2px 0;
+    }
+    /* Tooltip on hover */
+    .side-nav-btn::after {
+      content: attr(data-tip);
+      position: absolute;
+      right: 46px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(5,13,31,0.92);
+      border: 1px solid rgba(0,212,255,0.25);
+      color: var(--cyan);
+      font-size: 11px;
+      font-weight: 600;
+      white-space: nowrap;
+      padding: 4px 10px;
+      border-radius: 6px;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .side-nav-btn:hover::after { opacity: 1; }
+    @media (max-width: 768px) { .side-nav { right: 8px; } .side-nav-btn { width: 32px; height: 32px; font-size: 12px; } }
+
+    /* ============================================
        Responsive
     ============================================ */
     @media (max-width: 640px) {
@@ -573,8 +641,7 @@
     <h1 class="hero-title">Lo que construyen<br>mis estudiantes</h1>
     <p class="hero-subtitle">
       Proyectos reales de FinTech, IA, EdTech, AgroTech, ClimateTech y DeepTech —
-      creados por estudiantes de Jorge Hugo Pérez en EAN, Politécnico Grancolombiano,
-      BPro/SENA y más.
+      creados por estudiantes de Jorge Hugo Pérez en EAN y Politécnico Grancolombiano.
     </p>
     <div class="counters">
       <div class="counter-item">
@@ -639,14 +706,28 @@
       <span class="footer-sep">|</span>
       <a href="https://linkedin.com/in/jorgehugoperezgaona" target="_blank">LinkedIn ↗</a>
       <span class="footer-sep">|</span>
-      <span>EAN · Politécnico Grancolombiano · BPro · SENA</span>
+      <span>EAN · Politécnico Grancolombiano</span>
     </div>
     <span class="footer-tagline">
-      "Ayudo a líderes y empresas en LATAM a convertir la IA en su ventaja competitiva real — con el ICONE Method."
+      "Ayudo a líderes y empresas en LATAM que sienten que la IA los está dejando atrás a convertirla en su ventaja competitiva real, con el ICONE Method."
     </span>
   </footer>
 
 </div><!-- /page-wrapper -->
+
+<!-- ============ FLOATING SIDEBAR NAV ============ -->
+<nav class="side-nav" id="sideNav">
+  <button class="side-nav-btn" data-tip="Ir arriba" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+  <div class="side-nav-sep"></div>
+  <button class="side-nav-btn" data-tip="Todos" data-filter="todos" onclick="sideFilter('todos')">★</button>
+  <button class="side-nav-btn" data-tip="FinTech" data-filter="fintech" onclick="sideFilter('fintech')" style="font-size:10px;font-weight:800;color:#00d48a">FT</button>
+  <button class="side-nav-btn" data-tip="ClimateTech" data-filter="climatetech" onclick="sideFilter('climatetech')" style="font-size:10px;font-weight:800;color:#00d4ff">CT</button>
+  <button class="side-nav-btn" data-tip="DeepTech" data-filter="deeptech" onclick="sideFilter('deeptech')" style="font-size:10px;font-weight:800;color:#a67cff">DT</button>
+  <button class="side-nav-btn" data-tip="IA y Tecnologías" data-filter="ia-emergentes" onclick="sideFilter('ia-emergentes')" style="font-size:10px;font-weight:800;color:#c8eeff">IA</button>
+  <button class="side-nav-btn" data-tip="EdTech" data-filter="edtech" onclick="sideFilter('edtech')" style="font-size:10px;font-weight:800;color:#ff6b7a">ET</button>
+  <div class="side-nav-sep"></div>
+  <button class="side-nav-btn" data-tip="Ir abajo" onclick="window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'})">↓</button>
+</nav>
 
 <script>
 // ============================================================
@@ -771,7 +852,7 @@ const PROYECTOS = [
     id: 9,
     titulo: "Gestión Energía — Normatividad y Diseño",
     estudiante: "Equipo de Estudiantes",
-    curso: "Aprendiz SENA",
+    curso: "Tecnologías de Energía",
     institucion: "ICONE ialabs / Jorge Hugo Pérez",
     categoria: "climatetech",
     badge: "climatetech",
@@ -1064,6 +1145,25 @@ function animateCounter(el, target, duration) {
     if (progress < 1) requestAnimationFrame(step);
   }
   requestAnimationFrame(step);
+}
+
+// ============================================================
+// SIDEBAR FILTER
+// ============================================================
+function sideFilter(cat) {
+  // Trigger main filter buttons
+  const mainBtn = document.querySelector(`[data-filter="${cat}"]`);
+  if (mainBtn) {
+    document.getElementById('filters').querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    mainBtn.classList.add('active');
+    renderCards(cat);
+  }
+  // Highlight sidebar button
+  document.querySelectorAll('#sideNav .side-nav-btn[data-filter]').forEach(b => b.classList.remove('active-cat'));
+  const sideBtn = document.querySelector(`#sideNav [data-filter="${cat}"]`);
+  if (sideBtn) sideBtn.classList.add('active-cat');
+  // Scroll to grid
+  document.getElementById('grid').scrollIntoView({behavior:'smooth', block:'start'});
 }
 
 window.addEventListener('DOMContentLoaded', () => {
