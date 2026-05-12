@@ -534,7 +534,34 @@
   <!-- ============ TOP BAR ============ -->
   <header class="top-bar">
     <a href="https://iconeialabs.com" target="_blank" class="logo">
-      <div class="logo-icon">IC</div>
+      <div class="logo-icon" style="background:none;padding:0;overflow:visible;width:40px;height:40px;">
+        <svg width="40" height="40" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="100" height="100" rx="18" fill="#050d1f"/>
+          <!-- Glow defs -->
+          <defs>
+            <filter id="gc" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="4" result="blur"/>
+              <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+          </defs>
+          <!-- Connections (tubes) -->
+          <path d="M50 44 C50 36 50 28 50 16" stroke="#00d4ff" stroke-width="6" stroke-linecap="round" opacity="0.85"/>
+          <path d="M44 56 C38 63 30 70 22 78" stroke="#7b2fff" stroke-width="6" stroke-linecap="round" opacity="0.85"/>
+          <path d="M56 56 C62 63 70 70 78 78" stroke="#ff8c00" stroke-width="6" stroke-linecap="round" opacity="0.85"/>
+          <!-- Center node -->
+          <circle cx="50" cy="50" r="13" fill="#00d4ff" filter="url(#gc)"/>
+          <circle cx="47" cy="46" r="5" fill="white" opacity="0.45"/>
+          <!-- Top node -->
+          <circle cx="50" cy="12" r="8" fill="#00d4ff" opacity="0.95"/>
+          <circle cx="48" cy="10" r="3" fill="white" opacity="0.45"/>
+          <!-- Left node (purple) -->
+          <circle cx="19" cy="81" r="7" fill="#7b2fff" opacity="0.95"/>
+          <circle cx="17" cy="79" r="2.5" fill="white" opacity="0.45"/>
+          <!-- Right node (orange) -->
+          <circle cx="81" cy="81" r="7" fill="#ff8c00" opacity="0.95"/>
+          <circle cx="79" cy="79" r="2.5" fill="white" opacity="0.45"/>
+        </svg>
+      </div>
       <span class="logo-text">ICONE ialabs</span>
     </a>
     <a href="https://iconeialabs.com" target="_blank" class="top-bar-link">iconeialabs.com ↗</a>
@@ -551,7 +578,7 @@
     </p>
     <div class="counters">
       <div class="counter-item">
-        <span class="counter-num" id="cnt-proyectos">12</span>
+        <span class="counter-num" id="cnt-proyectos">19</span>
         <span class="counter-label">proyectos</span>
       </div>
       <div class="counter-item">
@@ -589,7 +616,7 @@
 
   <!-- ============ GALLERY HEADER ============ -->
   <div class="gallery-header">
-    <p class="gallery-count">Mostrando <span id="visible-count">12</span> proyectos</p>
+    <p class="gallery-count">Mostrando <span id="visible-count">19</span> proyectos</p>
   </div>
 
   <!-- ============ GRID ============ -->
@@ -644,139 +671,496 @@
 //   de cada uno. Reemplazar aquí y hacer push.
 // ============================================================
 const PROYECTOS = [
-  // ── Proyecto 1 ──────────────────────────────────────────
   {
     id: 1,
-    titulo: "Proyecto Estudiantil #1",
+    titulo: "Kely Lopez — Asistente Administrativa & Virtual",
     estudiante: "Equipo de Estudiantes",
-    curso: "Curso de IA y Transformación Digital",
-    institucion: "ICONE ialabs / Jorge Hugo Pérez",
-    categoria: "ia-emergentes",
-    badge: "ia-emergentes",
-    descripcion: "Proyecto digital desarrollado aplicando inteligencia artificial y herramientas de innovación tecnológica.",
-    enlace: "https://chat.z.ai/space/j1sbf15k1nb0-art",
-    emoji: "🤖"
-  },
-
-  // ── Proyecto 2 ──────────────────────────────────────────
-  {
-    id: 2,
-    titulo: "Proyecto Estudiantil #2",
-    estudiante: "Equipo de Estudiantes",
-    curso: "Curso de IA y Transformación Digital",
-    institucion: "ICONE ialabs / Jorge Hugo Pérez",
-    categoria: "ia-emergentes",
-    badge: "ia-emergentes",
-    descripcion: "Solución digital creada con IA aplicando metodologías de innovación y pensamiento tecnológico.",
-    enlace: "https://chat.z.ai/space/p1qb91jnqsk1-art",
-    emoji: "✨"
-  },
-
-  // ── Proyecto 3 ──────────────────────────────────────────
-  {
-    id: 3,
-    titulo: "Proyecto Estudiantil #3",
-    estudiante: "Equipo de Estudiantes",
-    curso: "Curso de IA y Transformación Digital",
-    institucion: "ICONE ialabs / Jorge Hugo Pérez",
-    categoria: "ia-emergentes",
-    badge: "ia-emergentes",
-    descripcion: "Desarrollo tecnológico que integra IA generativa para resolver desafíos empresariales reales.",
-    enlace: "https://chat.z.ai/space/q1vbm1h22en1-art",
-    emoji: "🚀"
-  },
-
-  // ── Proyecto 4 — EdTech (Canva Site) ────────────────────
-  {
-    id: 4,
-    titulo: "Proyecto Estudiantil #4",
-    estudiante: "Equipo de Estudiantes",
-    curso: "Diseño y Comunicación Digital",
-    institucion: "ICONE ialabs / Jorge Hugo Pérez",
-    categoria: "edtech",
-    badge: "edtech",
-    descripcion: "Sitio web profesional diseñado con herramientas digitales avanzadas para comunicar propuestas de valor.",
-    enlace: "https://psiaylinanaya.my.canva.site/",
-    emoji: "🎨"
-  },
-
-  // ── Proyecto 5 ──────────────────────────────────────────
-  {
-    id: 5,
-    titulo: "Proyecto Estudiantil #5",
-    estudiante: "Equipo de Estudiantes",
-    curso: "Curso de IA y Transformación Digital",
-    institucion: "ICONE ialabs / Jorge Hugo Pérez",
-    categoria: "ia-emergentes",
-    badge: "ia-emergentes",
-    descripcion: "Aplicación digital construida con IA que demuestra el dominio de herramientas tecnológicas emergentes.",
-    enlace: "https://chat.z.ai/space/x1zbe1tej811-art",
-    emoji: "💡"
-  },
-
-  // ── Proyecto 6 ──────────────────────────────────────────
-  {
-    id: 6,
-    titulo: "Proyecto Estudiantil #6",
-    estudiante: "Equipo de Estudiantes",
-    curso: "Curso de IA y Transformación Digital",
-    institucion: "ICONE ialabs / Jorge Hugo Pérez",
-    categoria: "ia-emergentes",
-    badge: "ia-emergentes",
-    descripcion: "Proyecto de innovación tecnológica que aplica IA para optimizar procesos y generar valor.",
-    enlace: "https://chat.z.ai/space/y10by1g1ufz1-art",
-    emoji: "⚡"
-  },
-
-  // ── Proyecto 7 ──────────────────────────────────────────
-  {
-    id: 7,
-    titulo: "Proyecto Estudiantil #7",
-    estudiante: "Equipo de Estudiantes",
-    curso: "Curso de IA y Transformación Digital",
-    institucion: "ICONE ialabs / Jorge Hugo Pérez",
-    categoria: "ia-emergentes",
-    badge: "ia-emergentes",
-    descripcion: "Solución inteligente desarrollada con IA aplicando frameworks de transformación digital.",
-    enlace: "https://chat.z.ai/space/g1207vevzde1-art",
-    emoji: "🧠"
-  },
-
-  // ── Proyecto 8 — FinTech (Arena site) ───────────────────
-  {
-    id: 8,
-    titulo: "Proyecto Estudiantil #8",
-    estudiante: "Equipo de Estudiantes",
-    curso: "Estrategia Digital y Comercial",
+    curso: "Desarrollo IA Montería",
     institucion: "ICONE ialabs / Jorge Hugo Pérez",
     categoria: "fintech",
     badge: "fintech",
-    descripcion: "Plataforma digital de arena para estrategia comercial y gestión de negocios en entornos digitales.",
-    enlace: "https://019c04bd-e2c2-77e0-a50a-1c5b3ebfe8de.arena.site/",
-    emoji: "🏆"
+    descripcion: "Portafolio profesional de servicios de gestión administrativa y virtual para empresas: control de recursos, automatización de procesos y atención al cliente.",
+    enlace: "https://chat.z.ai/space/j1sbf15k1nb0-art",
+    emoji: "💼"
   },
-
-  // ── Proyecto 9 ──────────────────────────────────────────
+  {
+    id: 2,
+    titulo: "PharmaQuiz — Trivia Farmacéutica",
+    estudiante: "Equipo de Estudiantes",
+    curso: "Desarrollo IA Montería",
+    institucion: "ICONE ialabs / Jorge Hugo Pérez",
+    categoria: "deeptech",
+    badge: "deeptech",
+    descripcion: "Aplicación de quiz interactivo para evaluar conocimientos farmacéuticos. Preguntas sobre fármacos, mecanismos de acción y usos clínicos con puntuación en tiempo real.",
+    enlace: "https://chat.z.ai/space/p1qb91jnqsk1-art",
+    emoji: "💊"
+  },
+  {
+    id: 3,
+    titulo: "Vecino Digital — Servicios en Vereda El Sabanal",
+    estudiante: "Equipo de Estudiantes",
+    curso: "Desarrollo IA Montería",
+    institucion: "ICONE ialabs / Jorge Hugo Pérez",
+    categoria: "fintech",
+    badge: "fintech",
+    descripcion: "Plataforma de servicios digitales para comunidades rurales: impresión, fotocopias, trámites digitales y envío de documentos por WhatsApp desde Vereda El Sabanal.",
+    enlace: "https://chat.z.ai/space/q1vbm1h22en1-art",
+    emoji: "🏘️"
+  },
+  {
+    id: 4,
+    titulo: "Psi. Aylin Anaya — Servicios Terapéuticos",
+    estudiante: "Equipo de Estudiantes",
+    curso: "Desarrollo IA Montería",
+    institucion: "ICONE ialabs / Jorge Hugo Pérez",
+    categoria: "deeptech",
+    badge: "deeptech",
+    descripcion: "Sitio web de servicios de psicología clínica: ansiedad, depresión, procesos de duelo, inteligencia emocional, autoestima y evaluación neuropsicológica.",
+    enlace: "https://psiaylinanaya.my.canva.site/",
+    emoji: "🧠"
+  },
+  {
+    id: 5,
+    titulo: "PREDIK — Datos Ambientales Colombia",
+    estudiante: "Equipo de Estudiantes",
+    curso: "Desarrollo IA Montería",
+    institucion: "ICONE ialabs / Jorge Hugo Pérez",
+    categoria: "climatetech",
+    badge: "climatetech",
+    descripcion: "Plataforma de análisis de datos públicos nacionales: calidad del aire, precipitación e índices sociales con 50 registros, 0 alertas críticas y 5 zonas de riesgo monitoreadas.",
+    enlace: "https://chat.z.ai/space/x1zbe1tej811-art",
+    emoji: "🌡️"
+  },
+  {
+    id: 6,
+    titulo: "Talento Tech — Dashboard de Encuestados",
+    estudiante: "Equipo de Estudiantes",
+    curso: "Desarrollo IA Montería",
+    institucion: "ICONE ialabs / Jorge Hugo Pérez",
+    categoria: "ia-emergentes",
+    badge: "ia-emergentes",
+    descripcion: "Dashboard analítico de 150 encuestados sobre bootcamps tecnológicos. Visualiza popularidad de Análisis de Datos, IA y Programación con distribución geográfica.",
+    enlace: "https://chat.z.ai/space/y10by1g1ufz1-art",
+    emoji: "📊"
+  },
+  {
+    id: 7,
+    titulo: "Talento Tech — Dashboard Integral",
+    estudiante: "Equipo de Estudiantes",
+    curso: "Desarrollo IA Montería",
+    institucion: "ICONE ialabs / Jorge Hugo Pérez",
+    categoria: "ia-emergentes",
+    badge: "ia-emergentes",
+    descripcion: "Plataforma analítica completa: 150 candidatos, 110 graduados, 42% tasa de empleabilidad. Distribución territorial en Bolívar, Córdoba y Sucre con métricas por género.",
+    enlace: "https://chat.z.ai/space/g1207vevzde1-art",
+    emoji: "🎯"
+  },
+  {
+    id: 8,
+    titulo: "Control de Inventarios — Iglesia",
+    estudiante: "Equipo de Estudiantes",
+    curso: "Desarrollo IA Montería",
+    institucion: "ICONE ialabs / Jorge Hugo Pérez",
+    categoria: "deeptech",
+    badge: "deeptech",
+    descripcion: "Sistema de gestión de inventarios con base de datos para organizaciones religiosas. Panel de administración con resumen general, dependencias y control de artículos.",
+    enlace: "https://019c04bd-e2c2-77e0-a50a-1c5b3ebfe8de.arena.site/",
+    emoji: "⛪"
+  },
   {
     id: 9,
-    titulo: "Proyecto Estudiantil #9",
+    titulo: "Gestión Energía — Normatividad y Diseño",
     estudiante: "Equipo de Estudiantes",
-    curso: "Curso de IA y Transformación Digital",
+    curso: "Aprendiz SENA",
     institucion: "ICONE ialabs / Jorge Hugo Pérez",
-    categoria: "ia-emergentes",
-    badge: "ia-emergentes",
-    descripcion: "Desarrollo con IA para automatizar y optimizar procesos de negocio en contextos reales.",
+    categoria: "climatetech",
+    badge: "climatetech",
+    descripcion: "Plataforma especializada en normatividad eléctrica: refrigeración y clima, compresores y bombas, iluminación RETILAP, costos y regulación, y proyectos de energías renovables FER.",
     enlace: "https://chat.z.ai/space/c150mup6s921-art",
-    emoji: "🔮"
+    emoji: "⚡"
   },
-
-  // ── Proyecto 10 ─────────────────────────────────────────
   {
     id: 10,
-    titulo: "Proyecto Estudiantil #10",
+    titulo: "Master del Teclado — Aprende con IA",
     estudiante: "Equipo de Estudiantes",
-    curso: "Curso de IA y Transformación Digital",
+    curso: "Desarrollo IA Montería",
+    institucion: "ICONE ialabs / Jorge Hugo Pérez",
+    categoria: "edtech",
+    badge: "edtech",
+    descripcion: "Juego interactivo creado con IA para identificar y practicar las partes del teclado. Modo estudio (hover para el nombre) y modo desafío (rapidez). Diseño responsivo y visual.",
+    enlace: "https://chat.z.ai/s/ba1c50b8-26b0-44a2-b009-c28947191bec",
+    emoji: "⌨️"
+  },
+  {
+    id: 11,
+    titulo: "H2O Monitor — Calidad del Agua",
+    estudiante: "Equipo de Estudiantes",
+    curso: "Desarrollo IA Montería",
+    institucion: "ICONE ialabs / Jorge Hugo Pérez",
+    categoria: "climatetech",
+    badge: "climatetech",
+    descripcion: "Plataforma de monitoreo de calidad del agua con simulador de laboratorio, toma de muestras, definiciones técnicas y consejos Vital para el hogar. Panel general con alertas.",
+    enlace: "https://chat.z.ai/space/d100zqyy2fa1-art",
+    emoji: "💧"
+  },
+  {
+    id: 12,
+    titulo: "STEM Kids — Educación para la Primera Infancia",
+    estudiante: "Equipo de Estudiantes",
+    curso: "Desarrollo IA Montería",
+    institucion: "ICONE ialabs / Jorge Hugo Pérez",
+    categoria: "edtech",
+    badge: "edtech",
+    descripcion: "Plataforma educativa innovadora para niños de 4 a 6 años que integra ciencia, tecnología, ingeniería y matemáticas con enfoque lúdico. 4 semestres, 36 clases por semestre.",
+    enlace: "https://b1y0hq4ejq30-d.space.z.ai/",
+    emoji: "👶"
+  }  ,
+  {
+    id: 13,
+    titulo: "AppCreators — Desarrollo de Apps",
+    estudiante: "Equipo de Estudiantes",
+    curso: "Desarrollo IA Montería",
+    institucion: "ICONE ialabs / Jorge Hugo Pérez",
+    categoria: "deeptech",
+    badge: "deeptech",
+    descripcion: "Empresa de desarrollo de aplicaciones móviles corporativas: metodología ágil, soporte 24/7 y entrega en 8 semanas. +50K usuarios activos y ratings de 4.8 estrellas en clientes.",
+    enlace: "https://019c5897-4138-7a0b-82ab-a283c885676c.arena.site/",
+    emoji: "📱"
+  },
+  {
+    id: 14,
+    titulo: "Asistencia Legal — Derechos Humanos",
+    estudiante: "Equipo de Estudiantes",
+    curso: "Desarrollo IA Montería",
     institucion: "ICONE ialabs / Jorge Hugo Pérez",
     categoria: "ia-emergentes",
     badge: "ia-emergentes",
-    descri
+    descripcion: "Asistente legal con IA especializado en derechos humanos: debido proceso, derecho a la vida, libertad de expresión e igualdad ante la ley. Orientación legal accesible 24/7.",
+    enlace: "https://y1g0cwg3mfe1-d.space.z.ai/",
+    emoji: "⚖️"
+  },
+  {
+    id: 15,
+    titulo: "Extintores del Sinú — Protección Integral",
+    estudiante: "Equipo de Estudiantes",
+    curso: "Desarrollo IA Montería",
+    institucion: "ICONE ialabs / Jorge Hugo Pérez",
+    categoria: "fintech",
+    badge: "fintech",
+    descripcion: "Plataforma digital de servicios de protección contra incendios y control de plagas en Montería y Córdoba. Venta, mantenimiento y recarga de extintores con capacitación certificada.",
+    enlace: "https://chat.z.ai/space/s1n07wz7rwg1-art",
+    emoji: "🧯"
+  },
+  {
+    id: 16,
+    titulo: "NEXOSYS — Soluciones IT Empresariales",
+    estudiante: "Equipo de Estudiantes",
+    curso: "Desarrollo IA Montería",
+    institucion: "ICONE ialabs / Jorge Hugo Pérez",
+    categoria: "deeptech",
+    badge: "deeptech",
+    descripcion: "Plataforma de gestión IT integral: administración estratégica, infraestructura cloud, automatización de procesos, ciberseguridad, Big Data y desarrollo a medida para empresas.",
+    enlace: "https://chat.z.ai/space/a1kcn1yk6g00-art",
+    emoji: "🖥️"
+  },
+  {
+    id: 17,
+    titulo: "AutoPremier Colombia — Catálogo de Vehículos",
+    estudiante: "Equipo de Estudiantes",
+    curso: "Desarrollo IA Montería",
+    institucion: "ICONE ialabs / Jorge Hugo Pérez",
+    categoria: "fintech",
+    badge: "fintech",
+    descripcion: "Concesionario digital con catálogo filtrable de SUVs, Sedanes y Deportivos. Test drive agendable, financiación y fichas técnicas detalladas con precios actualizados.",
+    enlace: "https://chat.z.ai/space/z1vak1ek5ca1-art",
+    emoji: "🚗"
+  },
+  {
+    id: 18,
+    titulo: "Clima App — Monitor del Tiempo",
+    estudiante: "Equipo de Estudiantes",
+    curso: "Desarrollo IA Montería",
+    institucion: "ICONE ialabs / Jorge Hugo Pérez",
+    categoria: "climatetech",
+    badge: "climatetech",
+    descripcion: "Aplicación de clima en tiempo real con búsqueda por ciudad. Temperatura por hora, índice UV, sensación térmica, velocidad del viento y humedad en un diseño cálido e intuitivo.",
+    enlace: "https://chat.z.ai/space/c1acd17f6m01-art",
+    emoji: "🌤️"
+  },
+  {
+    id: 19,
+    titulo: "Ecuaciones Diferenciales — Plataforma Académica",
+    estudiante: "Equipo de Estudiantes",
+    curso: "Desarrollo IA Montería",
+    institucion: "ICONE ialabs / Jorge Hugo Pérez",
+    categoria: "edtech",
+    badge: "edtech",
+    descripcion: "Plataforma educativa completa para Ingeniería de Sistemas y Electrónica: contenido teórico, simuladores, proyectos ABP, competencias y recursos sobre ecuaciones diferenciales.",
+    enlace: "https://chat.z.ai/space/s11aa11qzxa1-art",
+    emoji: "📐"
+  }  ,
+  {
+    id: 20,
+    titulo: "RunColombia — Entrenador Personal de Running",
+    estudiante: "Equipo de Estudiantes",
+    curso: "Desarrollo IA Montería",
+    institucion: "ICONE ialabs / Jorge Hugo Pérez",
+    categoria: "ia-emergentes",
+    badge: "ia-emergentes",
+    descripcion: "Entrenador de running personalizado con IA para corredores colombianos: planes desde principiantes hasta maratonistas avanzados con niveles, seguimiento y beneficios adaptativos.",
+    enlace: "https://claude.ai/public/artifacts/2fd11b3d-d856-4e18-a6ea-9261f4c9afdb",
+    emoji: "🏃"
+  },
+  {
+    id: 21,
+    titulo: "Portal UCIT — Cálculo Multivariado",
+    estudiante: "Equipo de Estudiantes",
+    curso: "Desarrollo IA Montería",
+    institucion: "ICONE ialabs / Jorge Hugo Pérez",
+    categoria: "edtech",
+    badge: "edtech",
+    descripcion: "Laboratorio virtual de Cálculo Multivariado para Ingeniería de Sistemas (UCIT): topografía y campos escalares, extremos, planos tangentes, derivadas parciales e integrales dobles.",
+    enlace: "https://chat.z.ai/space/q1a0uwgzprn0-art",
+    emoji: "🔢"
+  },
+  {
+    id: 22,
+    titulo: "Portal UVR — Valor en Tiempo Real",
+    estudiante: "Equipo de Estudiantes",
+    curso: "Desarrollo IA Montería",
+    institucion: "ICONE ialabs / Jorge Hugo Pérez",
+    categoria: "fintech",
+    badge: "fintech",
+    descripcion: "Plataforma financiera para monitorear el valor diario de la UVR en Colombia: tendencias, evolución histórica, calculadora de créditos hipotecarios e impacto inflacionario.",
+    enlace: "https://chat.z.ai/space/v1c0ywkkzey0-art",
+    emoji: "💰"
+  },
+  {
+    id: 23,
+    titulo: "Momentos Fotografía — Estudio Profesional",
+    estudiante: "Equipo de Estudiantes",
+    curso: "Desarrollo IA Montería",
+    institucion: "ICONE ialabs / Jorge Hugo Pérez",
+    categoria: "fintech",
+    badge: "fintech",
+    descripcion: "Estudio fotográfico digital con catálogo de servicios: retratos corporativos, Cake Smash, sesiones de Dulce Espera y fotografía familiar. Reservas por WhatsApp.",
+    enlace: "https://t150ewa35q31-d.space.z.ai/",
+    emoji: "📸"
+  },
+  {
+    id: 24,
+    titulo: "Momentos by Dperez — Fotografía en Montería",
+    estudiante: "Equipo de Estudiantes",
+    curso: "Desarrollo IA Montería",
+    institucion: "ICONE ialabs / Jorge Hugo Pérez",
+    categoria: "fintech",
+    badge: "fintech",
+    descripcion: "Portafolio fotográfico profesional en Montería — coleccionando recuerdos desde 2021. 740+ publicaciones y 2.331 seguidores. Sesiones con reserva directa por WhatsApp.",
+    enlace: "https://q1d0uwzr7690-d.space.z.ai/",
+    emoji: "🎞️"
+  },
+  {
+    id: 25,
+    titulo: "Sistema de Parqueadero — Control de Vehículos",
+    estudiante: "Equipo de Estudiantes",
+    curso: "Desarrollo IA Montería",
+    institucion: "ICONE ialabs / Jorge Hugo Pérez",
+    categoria: "deeptech",
+    badge: "deeptech",
+    descripcion: "Sistema de gestión de parqueadero con registro de entrada y salida de vehículos: placa, modelo, color, fecha y hora. Panel de registros activos en tiempo real.",
+    enlace: "https://chat.z.ai/space/q1n0hw7wxnw0-art",
+    emoji: "🅿️"
+  }
+];
+
+// ============================================================
+// BADGE LABELS
+// ============================================================
+const BADGE_LABELS = {
+  "fintech":       "FinTech",
+  "climatetech":   "ClimateTech",
+  "agrotech":      "AgroTech",
+  "deeptech":      "DeepTech",
+  "ia-emergentes": "IA · Emergentes",
+  "edtech":        "EdTech"
+};
+
+// ============================================================
+// RENDER CARDS
+// ============================================================
+function renderCards(filter) {
+  const grid = document.getElementById('grid');
+  const emptyState = document.getElementById('empty-state');
+  const visibleCount = document.getElementById('visible-count');
+
+  // Remove all existing cards (but keep empty-state)
+  grid.querySelectorAll('.card').forEach(c => c.remove());
+
+  const filtered = filter === 'todos'
+    ? PROYECTOS
+    : PROYECTOS.filter(p => p.categoria === filter);
+
+  if (filtered.length === 0) {
+    emptyState.classList.add('visible');
+    visibleCount.textContent = '0';
+    return;
+  }
+  emptyState.classList.remove('visible');
+  visibleCount.textContent = filtered.length;
+
+  filtered.forEach((p, i) => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.dataset.cat = p.categoria;
+    card.style.animationDelay = (i * 0.06) + 's';
+
+    const badgeLabel = BADGE_LABELS[p.badge] || p.badge;
+    const hasLink = p.enlace && p.enlace !== '#';
+
+    card.innerHTML = `
+      <div class="card-top">
+        <div class="card-emoji">${p.emoji}</div>
+        <span class="card-badge badge-${p.badge}">${badgeLabel}</span>
+      </div>
+      <h3 class="card-title">${p.titulo}</h3>
+      <div class="card-meta">
+        <span class="card-student">${p.estudiante}</span>
+        <span class="card-course">${p.curso}</span>
+        <span class="card-institution">🏛️ ${p.institucion}</span>
+      </div>
+      <p class="card-description">${p.descripcion}</p>
+      <div class="card-footer">
+        ${hasLink
+          ? `<a href="${p.enlace}" target="_blank" rel="noopener" class="btn-ver">Ver proyecto <span class="arrow">→</span></a>`
+          : `<span class="btn-ver disabled">Próximamente <span class="arrow">→</span></span>`
+        }
+      </div>
+    `;
+
+    grid.appendChild(card);
+  });
+}
+
+// ============================================================
+// FILTER BUTTONS
+// ============================================================
+document.getElementById('filters').addEventListener('click', function(e) {
+  const btn = e.target.closest('.filter-btn');
+  if (!btn) return;
+  this.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderCards(btn.dataset.filter);
+});
+
+// ============================================================
+// COUNTERS ANIMATION
+// ============================================================
+function animateCounter(el, target, duration) {
+  const start = performance.now();
+  function step(now) {
+    const progress = Math.min((now - start) / duration, 1);
+    const ease = 1 - Math.pow(1 - progress, 3);
+    el.textContent = Math.round(ease * target);
+    if (progress < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  renderCards('todos');
+
+  const cats = new Set(PROYECTOS.map(p => p.categoria));
+  const insts = new Set(PROYECTOS.map(p => p.institucion));
+
+  animateCounter(document.getElementById('cnt-proyectos'),   PROYECTOS.length, 1200);
+  animateCounter(document.getElementById('cnt-categorias'),  cats.size,         900);
+  animateCounter(document.getElementById('cnt-instituciones'), insts.size,      900);
+});
+
+// ============================================================
+// RED NEURONAL ANIMADA
+// ============================================================
+(function() {
+  const canvas = document.getElementById('particles-canvas');
+  const ctx = canvas.getContext('2d');
+  let W, H, nodes = [];
+  const NUM_NODES = 70;
+  const MAX_DIST = 160;
+
+  function resize() {
+    W = canvas.width = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  }
+
+  function createNode() {
+    return {
+      x: Math.random() * W,
+      y: Math.random() * H,
+      vx: (Math.random() - 0.5) * 0.4,
+      vy: (Math.random() - 0.5) * 0.4,
+      r: Math.random() * 2.5 + 1.5,
+      color: Math.random() > 0.5 ? '#00d4ff' : '#7b2fff'
+    };
+  }
+
+  function initNodes() {
+    nodes = [];
+    for (let i = 0; i < NUM_NODES; i++) nodes.push(createNode());
+  }
+
+  function drawNetwork() {
+    ctx.clearRect(0, 0, W, H);
+
+    // Draw connections
+    for (let i = 0; i < nodes.length; i++) {
+      for (let j = i + 1; j < nodes.length; j++) {
+        const dx = nodes[i].x - nodes[j].x;
+        const dy = nodes[i].y - nodes[j].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < MAX_DIST) {
+          const alpha = (1 - dist / MAX_DIST) * 0.35;
+          ctx.beginPath();
+          ctx.moveTo(nodes[i].x, nodes[i].y);
+          ctx.lineTo(nodes[j].x, nodes[j].y);
+          ctx.strokeStyle = `rgba(0, 212, 255, ${alpha})`;
+          ctx.lineWidth = 0.8;
+          ctx.stroke();
+        }
+      }
+    }
+
+    // Draw nodes
+    nodes.forEach(n => {
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+      ctx.fillStyle = n.color;
+      ctx.shadowColor = n.color;
+      ctx.shadowBlur = 8;
+      ctx.fill();
+      ctx.shadowBlur = 0;
+    });
+  }
+
+  function updateNodes() {
+    nodes.forEach(n => {
+      n.x += n.vx;
+      n.y += n.vy;
+      if (n.x < 0 || n.x > W) n.vx *= -1;
+      if (n.y < 0 || n.y > H) n.vy *= -1;
+    });
+  }
+
+  function animate() {
+    updateNodes();
+    drawNetwork();
+    requestAnimationFrame(animate);
+  }
+
+  window.addEventListener('resize', () => { resize(); initNodes(); });
+  resize();
+  initNodes();
+  animate();
+})();
+</script>
+</body>
+</html>
