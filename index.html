@@ -4,9 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Proyectos de Mis Estudiantes — Jorge Hugo Pérez | ICONE ialabs</title>
-  <meta name="description" content="Proyectos reales de IA, marketing digital y transformación digital creados por estudiantes de Jorge Hugo Pérez en EAN, Politécnico Grancolombiano, BPro y más." />
+  <meta name="description" content="Proyectos reales de FinTech, IA, EdTech, AgroTech, ClimateTech y DeepTech creados por estudiantes de Jorge Hugo Pérez en EAN, Politécnico Grancolombiano, BPro/SENA y más." />
   <meta property="og:title" content="Lo que construyen mis estudiantes — Jorge Hugo Pérez" />
-  <meta property="og:description" content="Proyectos reales de IA, marketing digital y transformación digital." />
+  <meta property="og:description" content="Proyectos reales de FinTech, IA, EdTech, AgroTech, ClimateTech y DeepTech." />
   <meta property="og:type" content="website" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -22,6 +22,8 @@
       --cyan:         #00d4ff;
       --purple:       #7b2fff;
       --orange:       #ff8c00;
+      --green:        #00d48a;
+      --red:          #ff4757;
       --text:         #e8eaf6;
       --text-muted:   #7986cb;
       --border:       rgba(0, 212, 255, 0.12);
@@ -158,7 +160,7 @@
       font-size: clamp(15px, 2vw, 18px);
       font-weight: 400;
       color: var(--text-muted);
-      max-width: 680px;
+      max-width: 720px;
       margin: 0 auto 44px;
       line-height: 1.7;
     }
@@ -198,8 +200,51 @@
     .counter-label { color: var(--text-muted); }
 
     /* ============================================
+       Category Legend Strip
+    ============================================ */
+    .cat-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      padding: 0 0 36px;
+    }
+    .cat-pill {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 5px 13px;
+      border-radius: 20px;
+      letter-spacing: 0.3px;
+    }
+    .cat-pill .dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .cat-fintech    { background: rgba(0,212,138,0.1);  color: #00d48a; border: 1px solid rgba(0,212,138,0.25); }
+    .cat-climate    { background: rgba(0,212,255,0.1);  color: var(--cyan);  border: 1px solid rgba(0,212,255,0.25); }
+    .cat-agro       { background: rgba(255,140,0,0.1);  color: var(--orange);border: 1px solid rgba(255,140,0,0.25); }
+    .cat-deep       { background: rgba(123,47,255,0.1); color: #a67cff; border: 1px solid rgba(123,47,255,0.25); }
+    .cat-ia         { background: rgba(0,212,255,0.07); color: #c0e8ff; border: 1px solid rgba(123,47,255,0.3);
+                      background-image: linear-gradient(135deg, rgba(0,212,255,0.1), rgba(123,47,255,0.1)); }
+    .cat-edtech     { background: rgba(255,71,87,0.1);  color: #ff6b7a; border: 1px solid rgba(255,71,87,0.25); }
+
+    /* ============================================
        Filter Pills
     ============================================ */
+    .filters-label {
+      text-align: center;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+      opacity: 0.6;
+    }
     .filters {
       display: flex;
       flex-wrap: wrap;
@@ -220,18 +265,22 @@
       transition: var(--transition);
       outline: none;
       letter-spacing: 0.3px;
+      position: relative;
     }
     .filter-btn:hover {
       color: var(--cyan);
       border-color: rgba(0, 212, 255, 0.4);
       background: rgba(0, 212, 255, 0.06);
     }
-    .filter-btn.active {
-      color: #fff;
-      background: linear-gradient(135deg, var(--cyan), var(--purple));
-      border-color: transparent;
-      box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
-    }
+    /* Per-category active states */
+    .filter-btn.active                   { color: #fff; border-color: transparent; box-shadow: 0 0 20px rgba(0,212,255,0.3); }
+    .filter-btn[data-filter="todos"].active      { background: linear-gradient(135deg, var(--cyan), var(--purple)); }
+    .filter-btn[data-filter="fintech"].active    { background: linear-gradient(135deg, #00d48a, #00a86b); box-shadow: 0 0 20px rgba(0,212,138,0.4); }
+    .filter-btn[data-filter="climatetech"].active{ background: linear-gradient(135deg, var(--cyan), #0099bb); box-shadow: 0 0 20px rgba(0,212,255,0.4); }
+    .filter-btn[data-filter="agrotech"].active   { background: linear-gradient(135deg, var(--orange), #cc7000); box-shadow: 0 0 20px rgba(255,140,0,0.4); }
+    .filter-btn[data-filter="deeptech"].active   { background: linear-gradient(135deg, var(--purple), #5500cc); box-shadow: 0 0 20px rgba(123,47,255,0.4); }
+    .filter-btn[data-filter="ia-emergentes"].active { background: linear-gradient(135deg, var(--cyan), var(--purple)); box-shadow: 0 0 20px rgba(0,212,255,0.35); }
+    .filter-btn[data-filter="edtech"].active     { background: linear-gradient(135deg, var(--red), #cc3344); box-shadow: 0 0 20px rgba(255,71,87,0.4); }
 
     /* ============================================
        Gallery Grid
@@ -246,10 +295,7 @@
       font-size: 13px;
       color: var(--text-muted);
     }
-    .gallery-count span {
-      color: var(--cyan);
-      font-weight: 700;
-    }
+    .gallery-count span { color: var(--cyan); font-weight: 700; }
 
     .grid {
       display: grid;
@@ -294,20 +340,6 @@
     .card:hover::before { opacity: 1; }
     .card.hidden { display: none; }
 
-    /* Staggered animation delays */
-    .card:nth-child(1)  { animation-delay: 0.05s; }
-    .card:nth-child(2)  { animation-delay: 0.10s; }
-    .card:nth-child(3)  { animation-delay: 0.15s; }
-    .card:nth-child(4)  { animation-delay: 0.20s; }
-    .card:nth-child(5)  { animation-delay: 0.25s; }
-    .card:nth-child(6)  { animation-delay: 0.30s; }
-    .card:nth-child(7)  { animation-delay: 0.35s; }
-    .card:nth-child(8)  { animation-delay: 0.40s; }
-    .card:nth-child(9)  { animation-delay: 0.45s; }
-    .card:nth-child(10) { animation-delay: 0.50s; }
-    .card:nth-child(11) { animation-delay: 0.55s; }
-    .card:nth-child(12) { animation-delay: 0.60s; }
-
     @keyframes fadeInUp {
       from { opacity: 0; transform: translateY(28px); }
       to   { opacity: 1; transform: translateY(0); }
@@ -333,21 +365,28 @@
       box-shadow: 0 0 16px rgba(0,212,255,0.3);
       transform: scale(1.08);
     }
+
+    /* ── Badge styles per vertical ─────────────── */
     .card-badge {
-      font-size: 11px;
+      font-size: 10.5px;
       font-weight: 700;
-      letter-spacing: 1px;
+      letter-spacing: 0.8px;
       text-transform: uppercase;
       padding: 4px 10px;
       border-radius: 20px;
       flex-shrink: 0;
+      white-space: nowrap;
     }
-    .badge-IA        { background: rgba(0,212,255,0.15);  color: var(--cyan);   border: 1px solid rgba(0,212,255,0.3);  }
-    .badge-Marketing { background: rgba(123,47,255,0.15); color: #b47cff;       border: 1px solid rgba(123,47,255,0.3); }
-    .badge-Trade     { background: rgba(255,140,0,0.15);  color: var(--orange); border: 1px solid rgba(255,140,0,0.3);  }
-    .badge-CX        { background: rgba(0,255,128,0.12);  color: #00e676;       border: 1px solid rgba(0,255,128,0.3);  }
-    .badge-Ecommerce { background: rgba(255,64,129,0.12); color: #ff4081;       border: 1px solid rgba(255,64,129,0.3); }
-    .badge-Otro      { background: rgba(255,255,255,0.08);color: var(--text-muted); border: 1px solid var(--border);    }
+    .badge-fintech     { background: rgba(0,212,138,0.15); color: #00d48a; border: 1px solid rgba(0,212,138,0.35); }
+    .badge-climatetech { background: rgba(0,212,255,0.12); color: var(--cyan); border: 1px solid rgba(0,212,255,0.3); }
+    .badge-agrotech    { background: rgba(255,140,0,0.14); color: var(--orange); border: 1px solid rgba(255,140,0,0.3); }
+    .badge-deeptech    { background: rgba(123,47,255,0.15); color: #a67cff; border: 1px solid rgba(123,47,255,0.35); }
+    .badge-ia-emergentes {
+      background: linear-gradient(135deg, rgba(0,212,255,0.12), rgba(123,47,255,0.12));
+      color: #c8eeff;
+      border: 1px solid rgba(123,47,255,0.3);
+    }
+    .badge-edtech      { background: rgba(255,71,87,0.13); color: #ff6b7a; border: 1px solid rgba(255,71,87,0.3); }
 
     .card-title {
       font-size: 17px;
@@ -390,9 +429,7 @@
       line-height: 1.65;
       flex: 1;
     }
-    .card-footer {
-      margin-top: auto;
-    }
+    .card-footer { margin-top: auto; }
     .btn-ver {
       display: inline-flex;
       align-items: center;
@@ -417,11 +454,7 @@
     }
     .btn-ver .arrow { transition: transform 0.25s ease; }
     .btn-ver:hover .arrow { transform: translateX(4px); }
-    .btn-ver.disabled {
-      opacity: 0.45;
-      cursor: not-allowed;
-      pointer-events: none;
-    }
+    .btn-ver.disabled { opacity: 0.45; cursor: not-allowed; pointer-events: none; }
 
     /* ============================================
        Empty State
@@ -438,17 +471,13 @@
     .empty-state h3 { font-size: 18px; color: var(--text); margin-bottom: 8px; }
 
     /* ============================================
-       Divider
+       Divider & Footer
     ============================================ */
     .divider {
       height: 1px;
       background: linear-gradient(90deg, transparent, var(--border), transparent);
       margin: 0 0 40px;
     }
-
-    /* ============================================
-       Footer
-    ============================================ */
     footer {
       border-top: 1px solid var(--border);
       padding: 40px 0;
@@ -464,11 +493,7 @@
       color: var(--text-muted);
     }
     .footer-sep { opacity: 0.3; }
-    .footer-inner a {
-      color: var(--cyan);
-      text-decoration: none;
-      transition: var(--transition);
-    }
+    .footer-inner a { color: var(--cyan); text-decoration: none; transition: var(--transition); }
     .footer-inner a:hover { color: #fff; }
     .footer-tagline {
       display: block;
@@ -487,7 +512,7 @@
     ::-webkit-scrollbar-thumb:hover { background: rgba(0,212,255,0.5); }
 
     /* ============================================
-       Responsive tweaks
+       Responsive
     ============================================ */
     @media (max-width: 640px) {
       .hero { padding: 48px 0 36px; }
@@ -495,6 +520,7 @@
       .counter-item + .counter-item { border-left: none; border-top: 1px solid var(--border); }
       .filters { gap: 8px; }
       .top-bar-link { display: none; }
+      .cat-legend { gap: 7px; }
     }
   </style>
 </head>
@@ -519,17 +545,18 @@
     <div class="hero-eyebrow">Prueba social · Impacto docente en LATAM</div>
     <h1 class="hero-title">Lo que construyen<br>mis estudiantes</h1>
     <p class="hero-subtitle">
-      Proyectos reales de IA, marketing digital y transformación digital creados por
-      estudiantes de Jorge Hugo Pérez en EAN, Politécnico Grancolombiano, BPro y más.
+      Proyectos reales de FinTech, IA, EdTech, AgroTech, ClimateTech y DeepTech —
+      creados por estudiantes de Jorge Hugo Pérez en EAN, Politécnico Grancolombiano,
+      BPro/SENA y más.
     </p>
     <div class="counters">
       <div class="counter-item">
-        <span class="counter-num" id="cnt-proyectos">6</span>
+        <span class="counter-num" id="cnt-proyectos">12</span>
         <span class="counter-label">proyectos</span>
       </div>
       <div class="counter-item">
-        <span class="counter-num" id="cnt-cursos">5</span>
-        <span class="counter-label">cursos</span>
+        <span class="counter-num" id="cnt-categorias">6</span>
+        <span class="counter-label">categorías tech</span>
       </div>
       <div class="counter-item">
         <span class="counter-num" id="cnt-instituciones">4</span>
@@ -538,29 +565,39 @@
     </div>
   </section>
 
+  <!-- ============ CATEGORY LEGEND ============ -->
+  <div class="cat-legend">
+    <span class="cat-pill cat-fintech">   <span class="dot" style="background:#00d48a"></span>FinTech</span>
+    <span class="cat-pill cat-climate">   <span class="dot" style="background:#00d4ff"></span>ClimateTech</span>
+    <span class="cat-pill cat-agro">      <span class="dot" style="background:#ff8c00"></span>AgroTech</span>
+    <span class="cat-pill cat-deep">      <span class="dot" style="background:#7b2fff"></span>DeepTech</span>
+    <span class="cat-pill cat-ia">        <span class="dot" style="background:linear-gradient(135deg,#00d4ff,#7b2fff)"></span>IA y Tecnologías Emergentes</span>
+    <span class="cat-pill cat-edtech">    <span class="dot" style="background:#ff4757"></span>EdTech</span>
+  </div>
+
   <!-- ============ FILTERS ============ -->
+  <p class="filters-label">Filtrar por vertical</p>
   <div class="filters" id="filters">
     <button class="filter-btn active" data-filter="todos">Todos</button>
-    <button class="filter-btn" data-filter="ean">EAN</button>
-    <button class="filter-btn" data-filter="poli">Poli</button>
-    <button class="filter-btn" data-filter="bpro">BPro / SENA</button>
-    <button class="filter-btn" data-filter="empresas">Empresas</button>
-    <button class="filter-btn" data-filter="ia">IA</button>
-    <button class="filter-btn" data-filter="marketing">Marketing Digital</button>
+    <button class="filter-btn" data-filter="fintech">FinTech</button>
+    <button class="filter-btn" data-filter="climatetech">ClimateTech</button>
+    <button class="filter-btn" data-filter="agrotech">AgroTech</button>
+    <button class="filter-btn" data-filter="deeptech">DeepTech</button>
+    <button class="filter-btn" data-filter="ia-emergentes">IA y Tecnologías Emergentes</button>
+    <button class="filter-btn" data-filter="edtech">EdTech</button>
   </div>
 
   <!-- ============ GALLERY HEADER ============ -->
   <div class="gallery-header">
-    <p class="gallery-count">Mostrando <span id="visible-count">6</span> proyectos</p>
+    <p class="gallery-count">Mostrando <span id="visible-count">12</span> proyectos</p>
   </div>
 
   <!-- ============ GRID ============ -->
   <main class="grid" id="grid">
-    <!-- Cards rendered by JS -->
     <div class="empty-state" id="empty-state">
       <div class="empty-state-icon">🔍</div>
       <h3>No hay proyectos en esta categoría aún</h3>
-      <p>Pronto llegará contenido nuevo.</p>
+      <p>Próximamente llegará contenido nuevo.</p>
     </div>
   </main>
 
@@ -585,286 +622,161 @@
 </div><!-- /page-wrapper -->
 
 <script>
-// ============================================
-// AGREGAR PROYECTOS AQUÍ — solo añadir objetos
-// Campos obligatorios: id, titulo, estudiante, curso, institucion, categoria, badge, descripcion, enlace, emoji
-// Campos de categoría válidos: "ean" | "poli" | "bpro" | "empresas"
-// Campos de badge válidos: "IA" | "Marketing" | "Trade" | "CX" | "Ecommerce" | "Otro"
-// Para el filtro de badge usa categoría + badge (ambos deben coincidir con los filtros)
-// ============================================
+// ============================================================
+// PROYECTOS — EDITAR AQUÍ
+//
+// Para agregar un proyecto nuevo:
+//   1. Copia cualquier bloque { ... } y pégalo al final antes del ];
+//   2. Cambia el "id" (número siguiente en la secuencia)
+//   3. Actualiza titulo, estudiante, curso, institucion, enlace, emoji
+//   4. Elige categoria (ver opciones abajo) y badge (mismo valor)
+//
+// CATEGORÍAS DISPONIBLES:
+//   "fintech"       → FinTech          (verde  #00d48a)
+//   "climatetech"   → ClimateTech      (cyan   #00d4ff)
+//   "agrotech"      → AgroTech         (naranja #ff8c00)
+//   "deeptech"      → DeepTech         (púrpura #7b2fff)
+//   "ia-emergentes" → IA y Tec. Emerg. (gradiente cyan→púrpura)
+//   "edtech"        → EdTech           (rojo   #ff4757)
+//
+// NOTA: Los títulos "Proyecto Estudiantil #N" son temporales.
+//   Jorge irá confirmando el nombre real, curso y categoría
+//   de cada uno. Reemplazar aquí y hacer push.
+// ============================================================
 const PROYECTOS = [
+  // ── Proyecto 1 ──────────────────────────────────────────
   {
     id: 1,
-    titulo: "Chatbot de Atención al Cliente con IA",
-    estudiante: "Equipo Grupo 3",
-    curso: "Gestión de IA para el Sector BPO — AF4",
-    institucion: "BPro / SENA",
-    categoria: "bpro",
-    badge: "IA",
-    descripcion: "Chatbot entrenado con GPT para resolver consultas frecuentes en centros de contacto, reduciendo tiempos de respuesta en un 40%.",
-    enlace: "#",
+    titulo: "Proyecto Estudiantil #1",
+    estudiante: "Equipo de Estudiantes",
+    curso: "Curso de IA y Transformación Digital",
+    institucion: "ICONE ialabs / Jorge Hugo Pérez",
+    categoria: "ia-emergentes",
+    badge: "ia-emergentes",
+    descripcion: "Proyecto digital desarrollado aplicando inteligencia artificial y herramientas de innovación tecnológica.",
+    enlace: "https://chat.z.ai/space/j1sbf15k1nb0-art",
     emoji: "🤖"
   },
+
+  // ── Proyecto 2 ──────────────────────────────────────────
   {
     id: 2,
-    titulo: "Dashboard de Métricas de Marketing Digital",
-    estudiante: "Equipo Terra Nova Solutions",
-    curso: "Agencia de Comunicación Digital 360 — EAN",
-    institucion: "Universidad EAN",
-    categoria: "ean",
-    badge: "Marketing",
-    descripcion: "Panel interactivo con KPIs de campaña, análisis de ROI y visualización de datos en tiempo real para toma de decisiones.",
-    enlace: "#",
-    emoji: "📊"
-  },
-  {
-    id: 3,
-    titulo: "Simulador de Estrategia en Marketplace",
-    estudiante: "Estudiante Digital Business",
-    curso: "Digital Business, Marketplaces and Social Commerce — EAN",
-    institucion: "Universidad EAN",
-    categoria: "ean",
-    badge: "Ecommerce",
-    descripcion: "Herramienta interactiva para simular decisiones de entrada a Amazon y Mercado Libre, con análisis de competencia y proyecciones.",
-    enlace: "#",
-    emoji: "🛒"
-  },
-  {
-    id: 4,
-    titulo: "App de Diagnóstico de Experiencia del Cliente",
-    estudiante: "Grupo Plaza Imperial",
-    curso: "Diplomado CX — Politécnico Grancolombiano",
-    institucion: "Poli",
-    categoria: "poli",
-    badge: "CX",
-    descripcion: "Quiz interactivo que evalúa la madurez de la experiencia del cliente en puntos de venta con recomendaciones automatizadas.",
-    enlace: "#",
-    emoji: "🎯"
-  },
-  {
-    id: 5,
-    titulo: "Generador de Contenido con IA para Redes",
-    estudiante: "Equipo Grupo 5",
-    curso: "Automatización IA — BPro Cali",
-    institucion: "BPro / SENA",
-    categoria: "bpro",
-    badge: "IA",
-    descripcion: "Herramienta que usa IA generativa para crear posts, captions y estrategias de contenido personalizadas por industria.",
-    enlace: "#",
+    titulo: "Proyecto Estudiantil #2",
+    estudiante: "Equipo de Estudiantes",
+    curso: "Curso de IA y Transformación Digital",
+    institucion: "ICONE ialabs / Jorge Hugo Pérez",
+    categoria: "ia-emergentes",
+    badge: "ia-emergentes",
+    descripcion: "Solución digital creada con IA aplicando metodologías de innovación y pensamiento tecnológico.",
+    enlace: "https://chat.z.ai/space/p1qb91jnqsk1-art",
     emoji: "✨"
   },
+
+  // ── Proyecto 3 ──────────────────────────────────────────
+  {
+    id: 3,
+    titulo: "Proyecto Estudiantil #3",
+    estudiante: "Equipo de Estudiantes",
+    curso: "Curso de IA y Transformación Digital",
+    institucion: "ICONE ialabs / Jorge Hugo Pérez",
+    categoria: "ia-emergentes",
+    badge: "ia-emergentes",
+    descripcion: "Desarrollo tecnológico que integra IA generativa para resolver desafíos empresariales reales.",
+    enlace: "https://chat.z.ai/space/q1vbm1h22en1-art",
+    emoji: "🚀"
+  },
+
+  // ── Proyecto 4 — EdTech (Canva Site) ────────────────────
+  {
+    id: 4,
+    titulo: "Proyecto Estudiantil #4",
+    estudiante: "Equipo de Estudiantes",
+    curso: "Diseño y Comunicación Digital",
+    institucion: "ICONE ialabs / Jorge Hugo Pérez",
+    categoria: "edtech",
+    badge: "edtech",
+    descripcion: "Sitio web profesional diseñado con herramientas digitales avanzadas para comunicar propuestas de valor.",
+    enlace: "https://psiaylinanaya.my.canva.site/",
+    emoji: "🎨"
+  },
+
+  // ── Proyecto 5 ──────────────────────────────────────────
+  {
+    id: 5,
+    titulo: "Proyecto Estudiantil #5",
+    estudiante: "Equipo de Estudiantes",
+    curso: "Curso de IA y Transformación Digital",
+    institucion: "ICONE ialabs / Jorge Hugo Pérez",
+    categoria: "ia-emergentes",
+    badge: "ia-emergentes",
+    descripcion: "Aplicación digital construida con IA que demuestra el dominio de herramientas tecnológicas emergentes.",
+    enlace: "https://chat.z.ai/space/x1zbe1tej811-art",
+    emoji: "💡"
+  },
+
+  // ── Proyecto 6 ──────────────────────────────────────────
   {
     id: 6,
-    titulo: "Calculadora de ROI en Trade Marketing",
-    estudiante: "Equipo Trade Strategy",
-    curso: "Trade Marketing and Customer Strategy — EAN",
-    institucion: "Universidad EAN",
-    categoria: "ean",
-    badge: "Trade",
-    descripcion: "Calculadora financiera para evaluar rentabilidad de activaciones en punto de venta, con simulador de escenarios.",
-    enlace: "#",
-    emoji: "💰"
-  }
-];
+    titulo: "Proyecto Estudiantil #6",
+    estudiante: "Equipo de Estudiantes",
+    curso: "Curso de IA y Transformación Digital",
+    institucion: "ICONE ialabs / Jorge Hugo Pérez",
+    categoria: "ia-emergentes",
+    badge: "ia-emergentes",
+    descripcion: "Proyecto de innovación tecnológica que aplica IA para optimizar procesos y generar valor.",
+    enlace: "https://chat.z.ai/space/y10by1g1ufz1-art",
+    emoji: "⚡"
+  },
 
-// ============================================
-// FILTROS ACTIVOS (no tocar)
-// ============================================
-// Mapa: botón data-filter → categorías/badges que incluye
-const FILTER_MAP = {
-  todos:     () => true,
-  ean:       p => p.categoria === 'ean',
-  poli:      p => p.categoria === 'poli',
-  bpro:      p => p.categoria === 'bpro',
-  empresas:  p => p.categoria === 'empresas',
-  ia:        p => p.badge === 'IA',
-  marketing: p => p.badge === 'Marketing',
-};
+  // ── Proyecto 7 ──────────────────────────────────────────
+  {
+    id: 7,
+    titulo: "Proyecto Estudiantil #7",
+    estudiante: "Equipo de Estudiantes",
+    curso: "Curso de IA y Transformación Digital",
+    institucion: "ICONE ialabs / Jorge Hugo Pérez",
+    categoria: "ia-emergentes",
+    badge: "ia-emergentes",
+    descripcion: "Solución inteligente desarrollada con IA aplicando frameworks de transformación digital.",
+    enlace: "https://chat.z.ai/space/g1207vevzde1-art",
+    emoji: "🧠"
+  },
 
-// ============================================
-// RENDER CARDS
-// ============================================
-function badgeClass(badge) {
-  const map = { IA:'badge-IA', Marketing:'badge-Marketing', Trade:'badge-Trade', CX:'badge-CX', Ecommerce:'badge-Ecommerce' };
-  return map[badge] || 'badge-Otro';
-}
+  // ── Proyecto 8 — FinTech (Arena site) ───────────────────
+  {
+    id: 8,
+    titulo: "Proyecto Estudiantil #8",
+    estudiante: "Equipo de Estudiantes",
+    curso: "Estrategia Digital y Comercial",
+    institucion: "ICONE ialabs / Jorge Hugo Pérez",
+    categoria: "fintech",
+    badge: "fintech",
+    descripcion: "Plataforma digital de arena para estrategia comercial y gestión de negocios en entornos digitales.",
+    enlace: "https://019c04bd-e2c2-77e0-a50a-1c5b3ebfe8de.arena.site/",
+    emoji: "🏆"
+  },
 
-function renderCards(filtro) {
-  const grid = document.getElementById('grid');
-  const empty = document.getElementById('empty-state');
-  const filterFn = FILTER_MAP[filtro] || FILTER_MAP.todos;
+  // ── Proyecto 9 ──────────────────────────────────────────
+  {
+    id: 9,
+    titulo: "Proyecto Estudiantil #9",
+    estudiante: "Equipo de Estudiantes",
+    curso: "Curso de IA y Transformación Digital",
+    institucion: "ICONE ialabs / Jorge Hugo Pérez",
+    categoria: "ia-emergentes",
+    badge: "ia-emergentes",
+    descripcion: "Desarrollo con IA para automatizar y optimizar procesos de negocio en contextos reales.",
+    enlace: "https://chat.z.ai/space/c150mup6s921-art",
+    emoji: "🔮"
+  },
 
-  // Remover cards existentes (no el empty state)
-  Array.from(grid.querySelectorAll('.card')).forEach(c => c.remove());
-
-  const visibles = PROYECTOS.filter(filterFn);
-  document.getElementById('visible-count').textContent = visibles.length;
-
-  if (visibles.length === 0) {
-    empty.classList.add('visible');
-    return;
-  }
-  empty.classList.remove('visible');
-
-  // Instituciones únicas para el contador
-  const instSet = new Set(PROYECTOS.map(p => p.institucion));
-  const cursSet = new Set(PROYECTOS.map(p => p.curso));
-  document.getElementById('cnt-instituciones').textContent = instSet.size;
-  document.getElementById('cnt-cursos').textContent = cursSet.size;
-
-  visibles.forEach((p, i) => {
-    const isDisabled = p.enlace === '#' || !p.enlace;
-    const card = document.createElement('article');
-    card.className = 'card';
-    card.style.animationDelay = `${(i * 0.07).toFixed(2)}s`;
-    card.innerHTML = `
-      <div class="card-top">
-        <div class="card-emoji">${p.emoji}</div>
-        <span class="card-badge ${badgeClass(p.badge)}">${p.badge}</span>
-      </div>
-      <h2 class="card-title">${p.titulo}</h2>
-      <div class="card-meta">
-        <span class="card-student">👤 ${p.estudiante}</span>
-        <span class="card-course">${p.curso}</span>
-        <span class="card-institution">🏛 ${p.institucion}</span>
-      </div>
-      <p class="card-description">${p.descripcion}</p>
-      <div class="card-footer">
-        ${isDisabled
-          ? `<button class="btn-ver disabled" disabled>Próximamente <span class="arrow">→</span></button>`
-          : `<a class="btn-ver" href="${p.enlace}" target="_blank" rel="noopener">Ver proyecto <span class="arrow">→</span></a>`
-        }
-      </div>
-    `;
-    grid.insertBefore(card, empty);
-  });
-
-  // Update total counter
-  document.getElementById('cnt-proyectos').textContent = PROYECTOS.length;
-}
-
-// ============================================
-// FILTER BUTTONS
-// ============================================
-document.getElementById('filters').addEventListener('click', e => {
-  const btn = e.target.closest('.filter-btn');
-  if (!btn) return;
-  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  renderCards(btn.dataset.filter);
-});
-
-// ============================================
-// ANIMATED COUNTER (entrance)
-// ============================================
-function animateCounter(el, target, duration = 1200) {
-  let start = 0;
-  const step = timestamp => {
-    if (!start) start = timestamp;
-    const progress = Math.min((timestamp - start) / duration, 1);
-    const ease = 1 - Math.pow(1 - progress, 3);
-    el.textContent = Math.round(ease * target);
-    if (progress < 1) requestAnimationFrame(step);
-  };
-  requestAnimationFrame(step);
-}
-
-// ============================================
-// PARTICLES — lightweight canvas
-// ============================================
-(function initParticles() {
-  const canvas = document.getElementById('particles-canvas');
-  const ctx = canvas.getContext('2d');
-  let W, H, particles = [];
-
-  const COLORS = ['rgba(0,212,255,', 'rgba(123,47,255,', 'rgba(255,140,0,'];
-
-  function resize() {
-    W = canvas.width  = window.innerWidth;
-    H = canvas.height = window.innerHeight;
-  }
-
-  function Particle() {
-    this.x  = Math.random() * W;
-    this.y  = Math.random() * H;
-    this.vx = (Math.random() - 0.5) * 0.35;
-    this.vy = (Math.random() - 0.5) * 0.35;
-    this.r  = Math.random() * 2 + 0.5;
-    this.color = COLORS[Math.floor(Math.random() * COLORS.length)];
-    this.alpha = Math.random() * 0.5 + 0.15;
-  }
-
-  Particle.prototype.update = function() {
-    this.x += this.vx;
-    this.y += this.vy;
-    if (this.x < 0 || this.x > W) this.vx *= -1;
-    if (this.y < 0 || this.y > H) this.vy *= -1;
-  };
-
-  Particle.prototype.draw = function() {
-    ctx.beginPath();
-    ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
-    ctx.fillStyle = this.color + this.alpha + ')';
-    ctx.fill();
-  };
-
-  function createParticles(n) {
-    particles = [];
-    for (let i = 0; i < n; i++) particles.push(new Particle());
-  }
-
-  function drawConnections() {
-    const MAX_DIST = 130;
-    for (let i = 0; i < particles.length; i++) {
-      for (let j = i + 1; j < particles.length; j++) {
-        const dx = particles[i].x - particles[j].x;
-        const dy = particles[i].y - particles[j].y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < MAX_DIST) {
-          const alpha = (1 - dist / MAX_DIST) * 0.12;
-          ctx.beginPath();
-          ctx.moveTo(particles[i].x, particles[i].y);
-          ctx.lineTo(particles[j].x, particles[j].y);
-          ctx.strokeStyle = `rgba(0,212,255,${alpha})`;
-          ctx.lineWidth = 0.8;
-          ctx.stroke();
-        }
-      }
-    }
-  }
-
-  function loop() {
-    ctx.clearRect(0, 0, W, H);
-    drawConnections();
-    particles.forEach(p => { p.update(); p.draw(); });
-    requestAnimationFrame(loop);
-  }
-
-  resize();
-  createParticles(70);
-  loop();
-
-  window.addEventListener('resize', () => {
-    resize();
-    createParticles(70);
-  });
-})();
-
-// ============================================
-// INIT
-// ============================================
-window.addEventListener('DOMContentLoaded', () => {
-  renderCards('todos');
-
-  // Animate counters after short delay
-  const uniqueInst = new Set(PROYECTOS.map(p => p.institucion));
-  const uniqueCurs = new Set(PROYECTOS.map(p => p.curso));
-  setTimeout(() => {
-    animateCounter(document.getElementById('cnt-proyectos'),   PROYECTOS.length);
-    animateCounter(document.getElementById('cnt-cursos'),      uniqueCurs.size);
-    animateCounter(document.getElementById('cnt-instituciones'), uniqueInst.size);
-  }, 300);
-});
-</script>
-</body>
-</html>
+  // ── Proyecto 10 ─────────────────────────────────────────
+  {
+    id: 10,
+    titulo: "Proyecto Estudiantil #10",
+    estudiante: "Equipo de Estudiantes",
+    curso: "Curso de IA y Transformación Digital",
+    institucion: "ICONE ialabs / Jorge Hugo Pérez",
+    categoria: "ia-emergentes",
+    badge: "ia-emergentes",
+    descri
