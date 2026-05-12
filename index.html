@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Proyectos de Mis Estudiantes — Jorge Hugo Pérez | ICONE ialabs</title>
+  <meta name="description" content="Proyectos reales de IA, marketing digital y transformación digital creados por estudiantes de Jorge Hugo Pérez en EAN, Politécnico Grancolombiano, BPro y más." />
+  <meta property="og:title" content="Lo que construyen mis estudiantes — Jorge Hugo Pérez" />
+  <meta property="og:description" content="Proyectos reales de IA, marketing digital y transformación digital." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    /* ============================================
+       ICONE ialabs — Design Tokens
+    ============================================ */
+    :root {
+      --bg:           #050d1f;
+      --bg-card:      #0a1530;
+      --bg-card-hover:#0e1e40;
+      --cyan:         #00d4ff;
+      --purple:       #7b2fff;
+      --orange:       #ff8c00;
+      --text:         #e8eaf6;
+      --text-muted:   #7986cb;
+      --border:       rgba(0, 212, 255, 0.12);
+      --border-hover: rgba(0, 212, 255, 0.45);
+      --glow-cyan:    0 0 24px rgba(0, 212, 255, 0.35), 0 0 8px rgba(0, 212, 255, 0.2);
+      --glow-purple:  0 0 24px rgba(123, 47, 255, 0.35), 0 0 8px rgba(123, 47, 255, 0.2);
+      --font:         'Inter', system-ui, -apple-system, sans-serif;
+      --radius:       16px;
+      --radius-sm:    8px;
+      --transition:   0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* ============================================
+       Reset & Base
+    ============================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* ============================================
+       Particle Canvas
+    ============================================ */
+    #particles-canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.55;
+    }
+
+    /* ============================================
+       Layout Wrapper
+    ============================================ */
+    .page-wrapper {
+      position: relative;
+      z-index: 1;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ============================================
+       Top Bar (logo)
+    ============================================ */
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 28px 0 0;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+    .logo-icon {
+      width: 36px; height: 36px;
+      background: linear-gradient(135deg, var(--cyan), var(--purple));
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 900;
+      font-size: 14px;
+      color: #fff;
+      letter-spacing: -0.5px;
+      box-shadow: var(--glow-cyan);
+    }
+    .logo-text {
+      font-size: 15px;
+      font-weight: 700;
+      background: linear-gradient(90deg, var(--cyan), var(--purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .top-bar-link {
+      font-size: 13px;
+      color: var(--text-muted);
+      text-decoration: none;
+      border: 1px solid var(--border);
+      padding: 6px 14px;
+      border-radius: 20px;
+      transition: var(--transition);
+    }
+    .top-bar-link:hover {
+      color: var(--cyan);
+      border-color: var(--cyan);
+      box-shadow: var(--glow-cyan);
+    }
+
+    /* ============================================
+       Hero Header
+    ============================================ */
+    .hero {
+      text-align: center;
+      padding: 72px 0 56px;
+    }
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--cyan);
+      border: 1px solid rgba(0, 212, 255, 0.3);
+      background: rgba(0, 212, 255, 0.06);
+      padding: 6px 16px;
+      border-radius: 20px;
+      margin-bottom: 28px;
+    }
+    .hero-eyebrow::before { content: "✦"; font-size: 10px; }
+    .hero-title {
+      font-size: clamp(36px, 6vw, 72px);
+      font-weight: 900;
+      line-height: 1.08;
+      letter-spacing: -2px;
+      margin-bottom: 24px;
+      background: linear-gradient(135deg, #ffffff 0%, var(--cyan) 50%, var(--purple) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-subtitle {
+      font-size: clamp(15px, 2vw, 18px);
+      font-weight: 400;
+      color: var(--text-muted);
+      max-width: 680px;
+      margin: 0 auto 44px;
+      line-height: 1.7;
+    }
+
+    /* ============================================
+       Counters
+    ============================================ */
+    .counters {
+      display: inline-flex;
+      align-items: center;
+      gap: 0;
+      background: rgba(0, 212, 255, 0.04);
+      border: 1px solid var(--border);
+      border-radius: 40px;
+      overflow: hidden;
+    }
+    .counter-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 28px;
+      font-size: 14px;
+      font-weight: 500;
+    }
+    .counter-item + .counter-item {
+      border-left: 1px solid var(--border);
+    }
+    .counter-num {
+      font-size: 22px;
+      font-weight: 800;
+      background: linear-gradient(90deg, var(--cyan), var(--purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      transition: all 0.5s ease;
+    }
+    .counter-label { color: var(--text-muted); }
+
+    /* ============================================
+       Filter Pills
+    ============================================ */
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      padding: 0 0 52px;
+    }
+    .filter-btn {
+      cursor: pointer;
+      font-family: var(--font);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 8px 20px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+      color: var(--text-muted);
+      transition: var(--transition);
+      outline: none;
+      letter-spacing: 0.3px;
+    }
+    .filter-btn:hover {
+      color: var(--cyan);
+      border-color: rgba(0, 212, 255, 0.4);
+      background: rgba(0, 212, 255, 0.06);
+    }
+    .filter-btn.active {
+      color: #fff;
+      background: linear-gradient(135deg, var(--cyan), var(--purple));
+      border-color: transparent;
+      box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+    }
+
+    /* ============================================
+       Gallery Grid
+    ============================================ */
+    .gallery-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 28px;
+    }
+    .gallery-count {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    .gallery-count span {
+      color: var(--cyan);
+      font-weight: 700;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 80px;
+    }
+    @media (max-width: 1024px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 640px)  { .grid { grid-template-columns: 1fr; gap: 16px; } }
+
+    /* ============================================
+       Project Card
+    ============================================ */
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      transition: var(--transition);
+      cursor: default;
+      position: relative;
+      overflow: hidden;
+      animation: fadeInUp 0.5s ease both;
+    }
+    .card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(0,212,255,0.03) 0%, rgba(123,47,255,0.03) 100%);
+      opacity: 0;
+      transition: var(--transition);
+    }
+    .card:hover {
+      border-color: var(--border-hover);
+      background: var(--bg-card-hover);
+      transform: translateY(-6px);
+      box-shadow: var(--glow-cyan), 0 20px 40px rgba(0,0,0,0.4);
+    }
+    .card:hover::before { opacity: 1; }
+    .card.hidden { display: none; }
+
+    /* Staggered animation delays */
+    .card:nth-child(1)  { animation-delay: 0.05s; }
+    .card:nth-child(2)  { animation-delay: 0.10s; }
+    .card:nth-child(3)  { animation-delay: 0.15s; }
+    .card:nth-child(4)  { animation-delay: 0.20s; }
+    .card:nth-child(5)  { animation-delay: 0.25s; }
+    .card:nth-child(6)  { animation-delay: 0.30s; }
+    .card:nth-child(7)  { animation-delay: 0.35s; }
+    .card:nth-child(8)  { animation-delay: 0.40s; }
+    .card:nth-child(9)  { animation-delay: 0.45s; }
+    .card:nth-child(10) { animation-delay: 0.50s; }
+    .card:nth-child(11) { animation-delay: 0.55s; }
+    .card:nth-child(12) { animation-delay: 0.60s; }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .card-emoji {
+      width: 52px; height: 52px;
+      background: linear-gradient(135deg, rgba(0,212,255,0.12), rgba(123,47,255,0.12));
+      border: 1px solid rgba(0,212,255,0.2);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 26px;
+      flex-shrink: 0;
+      transition: var(--transition);
+    }
+    .card:hover .card-emoji {
+      box-shadow: 0 0 16px rgba(0,212,255,0.3);
+      transform: scale(1.08);
+    }
+    .card-badge {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 20px;
+      flex-shrink: 0;
+    }
+    .badge-IA        { background: rgba(0,212,255,0.15);  color: var(--cyan);   border: 1px solid rgba(0,212,255,0.3);  }
+    .badge-Marketing { background: rgba(123,47,255,0.15); color: #b47cff;       border: 1px solid rgba(123,47,255,0.3); }
+    .badge-Trade     { background: rgba(255,140,0,0.15);  color: var(--orange); border: 1px solid rgba(255,140,0,0.3);  }
+    .badge-CX        { background: rgba(0,255,128,0.12);  color: #00e676;       border: 1px solid rgba(0,255,128,0.3);  }
+    .badge-Ecommerce { background: rgba(255,64,129,0.12); color: #ff4081;       border: 1px solid rgba(255,64,129,0.3); }
+    .badge-Otro      { background: rgba(255,255,255,0.08);color: var(--text-muted); border: 1px solid var(--border);    }
+
+    .card-title {
+      font-size: 17px;
+      font-weight: 700;
+      line-height: 1.35;
+      color: #fff;
+    }
+    .card-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .card-student {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--cyan);
+    }
+    .card-course {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+    .card-institution {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-muted);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      padding: 3px 10px;
+      border-radius: 20px;
+      width: fit-content;
+      margin-top: 2px;
+    }
+    .card-description {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      line-height: 1.65;
+      flex: 1;
+    }
+    .card-footer {
+      margin-top: auto;
+    }
+    .btn-ver {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-family: var(--font);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--cyan);
+      background: rgba(0,212,255,0.08);
+      border: 1px solid rgba(0,212,255,0.25);
+      padding: 9px 18px;
+      border-radius: var(--radius-sm);
+      text-decoration: none;
+      transition: var(--transition);
+      cursor: pointer;
+    }
+    .btn-ver:hover {
+      background: rgba(0,212,255,0.18);
+      border-color: var(--cyan);
+      box-shadow: var(--glow-cyan);
+      transform: translateX(3px);
+    }
+    .btn-ver .arrow { transition: transform 0.25s ease; }
+    .btn-ver:hover .arrow { transform: translateX(4px); }
+    .btn-ver.disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+
+    /* ============================================
+       Empty State
+    ============================================ */
+    .empty-state {
+      display: none;
+      text-align: center;
+      padding: 80px 24px;
+      color: var(--text-muted);
+      grid-column: 1 / -1;
+    }
+    .empty-state.visible { display: block; }
+    .empty-state-icon { font-size: 52px; margin-bottom: 16px; }
+    .empty-state h3 { font-size: 18px; color: var(--text); margin-bottom: 8px; }
+
+    /* ============================================
+       Divider
+    ============================================ */
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+      margin: 0 0 40px;
+    }
+
+    /* ============================================
+       Footer
+    ============================================ */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 40px 0;
+      text-align: center;
+    }
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    .footer-sep { opacity: 0.3; }
+    .footer-inner a {
+      color: var(--cyan);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    .footer-inner a:hover { color: #fff; }
+    .footer-tagline {
+      display: block;
+      margin-top: 14px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.18);
+      letter-spacing: 0.5px;
+    }
+
+    /* ============================================
+       Scrollbar
+    ============================================ */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: rgba(0,212,255,0.25); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(0,212,255,0.5); }
+
+    /* ============================================
+       Responsive tweaks
+    ============================================ */
+    @media (max-width: 640px) {
+      .hero { padding: 48px 0 36px; }
+      .counters { flex-direction: column; border-radius: 16px; }
+      .counter-item + .counter-item { border-left: none; border-top: 1px solid var(--border); }
+      .filters { gap: 8px; }
+      .top-bar-link { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ============ PARTICLE CANVAS ============ -->
+<canvas id="particles-canvas"></canvas>
+
+<div class="page-wrapper">
+
+  <!-- ============ TOP BAR ============ -->
+  <header class="top-bar">
+    <a href="https://iconeialabs.com" target="_blank" class="logo">
+      <div class="logo-icon">IC</div>
+      <span class="logo-text">ICONE ialabs</span>
+    </a>
+    <a href="https://iconeialabs.com" target="_blank" class="top-bar-link">iconeialabs.com ↗</a>
+  </header>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="hero-eyebrow">Prueba social · Impacto docente en LATAM</div>
+    <h1 class="hero-title">Lo que construyen<br>mis estudiantes</h1>
+    <p class="hero-subtitle">
+      Proyectos reales de IA, marketing digital y transformación digital creados por
+      estudiantes de Jorge Hugo Pérez en EAN, Politécnico Grancolombiano, BPro y más.
+    </p>
+    <div class="counters">
+      <div class="counter-item">
+        <span class="counter-num" id="cnt-proyectos">6</span>
+        <span class="counter-label">proyectos</span>
+      </div>
+      <div class="counter-item">
+        <span class="counter-num" id="cnt-cursos">5</span>
+        <span class="counter-label">cursos</span>
+      </div>
+      <div class="counter-item">
+        <span class="counter-num" id="cnt-instituciones">4</span>
+        <span class="counter-label">instituciones</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FILTERS ============ -->
+  <div class="filters" id="filters">
+    <button class="filter-btn active" data-filter="todos">Todos</button>
+    <button class="filter-btn" data-filter="ean">EAN</button>
+    <button class="filter-btn" data-filter="poli">Poli</button>
+    <button class="filter-btn" data-filter="bpro">BPro / SENA</button>
+    <button class="filter-btn" data-filter="empresas">Empresas</button>
+    <button class="filter-btn" data-filter="ia">IA</button>
+    <button class="filter-btn" data-filter="marketing">Marketing Digital</button>
+  </div>
+
+  <!-- ============ GALLERY HEADER ============ -->
+  <div class="gallery-header">
+    <p class="gallery-count">Mostrando <span id="visible-count">6</span> proyectos</p>
+  </div>
+
+  <!-- ============ GRID ============ -->
+  <main class="grid" id="grid">
+    <!-- Cards rendered by JS -->
+    <div class="empty-state" id="empty-state">
+      <div class="empty-state-icon">🔍</div>
+      <h3>No hay proyectos en esta categoría aún</h3>
+      <p>Pronto llegará contenido nuevo.</p>
+    </div>
+  </main>
+
+  <div class="divider"></div>
+
+  <!-- ============ FOOTER ============ -->
+  <footer>
+    <div class="footer-inner">
+      <span>Docente: <strong style="color:#fff">Jorge Hugo Pérez</strong></span>
+      <span class="footer-sep">|</span>
+      <a href="https://iconeialabs.com" target="_blank">ICONE ialabs</a>
+      <span class="footer-sep">|</span>
+      <a href="https://linkedin.com/in/jorgehugoperezgaona" target="_blank">LinkedIn ↗</a>
+      <span class="footer-sep">|</span>
+      <span>EAN · Politécnico Grancolombiano · BPro · SENA</span>
+    </div>
+    <span class="footer-tagline">
+      "Ayudo a líderes y empresas en LATAM a convertir la IA en su ventaja competitiva real — con el ICONE Method."
+    </span>
+  </footer>
+
+</div><!-- /page-wrapper -->
+
+<script>
+// ============================================
+// AGREGAR PROYECTOS AQUÍ — solo añadir objetos
+// Campos obligatorios: id, titulo, estudiante, curso, institucion, categoria, badge, descripcion, enlace, emoji
+// Campos de categoría válidos: "ean" | "poli" | "bpro" | "empresas"
+// Campos de badge válidos: "IA" | "Marketing" | "Trade" | "CX" | "Ecommerce" | "Otro"
+// Para el filtro de badge usa categoría + badge (ambos deben coincidir con los filtros)
+// ============================================
+const PROYECTOS = [
+  {
+    id: 1,
+    titulo: "Chatbot de Atención al Cliente con IA",
+    estudiante: "Equipo Grupo 3",
+    curso: "Gestión de IA para el Sector BPO — AF4",
+    institucion: "BPro / SENA",
+    categoria: "bpro",
+    badge: "IA",
+    descripcion: "Chatbot entrenado con GPT para resolver consultas frecuentes en centros de contacto, reduciendo tiempos de respuesta en un 40%.",
+    enlace: "#",
+    emoji: "🤖"
+  },
+  {
+    id: 2,
+    titulo: "Dashboard de Métricas de Marketing Digital",
+    estudiante: "Equipo Terra Nova Solutions",
+    curso: "Agencia de Comunicación Digital 360 — EAN",
+    institucion: "Universidad EAN",
+    categoria: "ean",
+    badge: "Marketing",
+    descripcion: "Panel interactivo con KPIs de campaña, análisis de ROI y visualización de datos en tiempo real para toma de decisiones.",
+    enlace: "#",
+    emoji: "📊"
+  },
+  {
+    id: 3,
+    titulo: "Simulador de Estrategia en Marketplace",
+    estudiante: "Estudiante Digital Business",
+    curso: "Digital Business, Marketplaces and Social Commerce — EAN",
+    institucion: "Universidad EAN",
+    categoria: "ean",
+    badge: "Ecommerce",
+    descripcion: "Herramienta interactiva para simular decisiones de entrada a Amazon y Mercado Libre, con análisis de competencia y proyecciones.",
+    enlace: "#",
+    emoji: "🛒"
+  },
+  {
+    id: 4,
+    titulo: "App de Diagnóstico de Experiencia del Cliente",
+    estudiante: "Grupo Plaza Imperial",
+    curso: "Diplomado CX — Politécnico Grancolombiano",
+    institucion: "Poli",
+    categoria: "poli",
+    badge: "CX",
+    descripcion: "Quiz interactivo que evalúa la madurez de la experiencia del cliente en puntos de venta con recomendaciones automatizadas.",
+    enlace: "#",
+    emoji: "🎯"
+  },
+  {
+    id: 5,
+    titulo: "Generador de Contenido con IA para Redes",
+    estudiante: "Equipo Grupo 5",
+    curso: "Automatización IA — BPro Cali",
+    institucion: "BPro / SENA",
+    categoria: "bpro",
+    badge: "IA",
+    descripcion: "Herramienta que usa IA generativa para crear posts, captions y estrategias de contenido personalizadas por industria.",
+    enlace: "#",
+    emoji: "✨"
+  },
+  {
+    id: 6,
+    titulo: "Calculadora de ROI en Trade Marketing",
+    estudiante: "Equipo Trade Strategy",
+    curso: "Trade Marketing and Customer Strategy — EAN",
+    institucion: "Universidad EAN",
+    categoria: "ean",
+    badge: "Trade",
+    descripcion: "Calculadora financiera para evaluar rentabilidad de activaciones en punto de venta, con simulador de escenarios.",
+    enlace: "#",
+    emoji: "💰"
+  }
+];
+
+// ============================================
+// FILTROS ACTIVOS (no tocar)
+// ============================================
+// Mapa: botón data-filter → categorías/badges que incluye
+const FILTER_MAP = {
+  todos:     () => true,
+  ean:       p => p.categoria === 'ean',
+  poli:      p => p.categoria === 'poli',
+  bpro:      p => p.categoria === 'bpro',
+  empresas:  p => p.categoria === 'empresas',
+  ia:        p => p.badge === 'IA',
+  marketing: p => p.badge === 'Marketing',
+};
+
+// ============================================
+// RENDER CARDS
+// ============================================
+function badgeClass(badge) {
+  const map = { IA:'badge-IA', Marketing:'badge-Marketing', Trade:'badge-Trade', CX:'badge-CX', Ecommerce:'badge-Ecommerce' };
+  return map[badge] || 'badge-Otro';
+}
+
+function renderCards(filtro) {
+  const grid = document.getElementById('grid');
+  const empty = document.getElementById('empty-state');
+  const filterFn = FILTER_MAP[filtro] || FILTER_MAP.todos;
+
+  // Remover cards existentes (no el empty state)
+  Array.from(grid.querySelectorAll('.card')).forEach(c => c.remove());
+
+  const visibles = PROYECTOS.filter(filterFn);
+  document.getElementById('visible-count').textContent = visibles.length;
+
+  if (visibles.length === 0) {
+    empty.classList.add('visible');
+    return;
+  }
+  empty.classList.remove('visible');
+
+  // Instituciones únicas para el contador
+  const instSet = new Set(PROYECTOS.map(p => p.institucion));
+  const cursSet = new Set(PROYECTOS.map(p => p.curso));
+  document.getElementById('cnt-instituciones').textContent = instSet.size;
+  document.getElementById('cnt-cursos').textContent = cursSet.size;
+
+  visibles.forEach((p, i) => {
+    const isDisabled = p.enlace === '#' || !p.enlace;
+    const card = document.createElement('article');
+    card.className = 'card';
+    card.style.animationDelay = `${(i * 0.07).toFixed(2)}s`;
+    card.innerHTML = `
+      <div class="card-top">
+        <div class="card-emoji">${p.emoji}</div>
+        <span class="card-badge ${badgeClass(p.badge)}">${p.badge}</span>
+      </div>
+      <h2 class="card-title">${p.titulo}</h2>
+      <div class="card-meta">
+        <span class="card-student">👤 ${p.estudiante}</span>
+        <span class="card-course">${p.curso}</span>
+        <span class="card-institution">🏛 ${p.institucion}</span>
+      </div>
+      <p class="card-description">${p.descripcion}</p>
+      <div class="card-footer">
+        ${isDisabled
+          ? `<button class="btn-ver disabled" disabled>Próximamente <span class="arrow">→</span></button>`
+          : `<a class="btn-ver" href="${p.enlace}" target="_blank" rel="noopener">Ver proyecto <span class="arrow">→</span></a>`
+        }
+      </div>
+    `;
+    grid.insertBefore(card, empty);
+  });
+
+  // Update total counter
+  document.getElementById('cnt-proyectos').textContent = PROYECTOS.length;
+}
+
+// ============================================
+// FILTER BUTTONS
+// ============================================
+document.getElementById('filters').addEventListener('click', e => {
+  const btn = e.target.closest('.filter-btn');
+  if (!btn) return;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderCards(btn.dataset.filter);
+});
+
+// ============================================
+// ANIMATED COUNTER (entrance)
+// ============================================
+function animateCounter(el, target, duration = 1200) {
+  let start = 0;
+  const step = timestamp => {
+    if (!start) start = timestamp;
+    const progress = Math.min((timestamp - start) / duration, 1);
+    const ease = 1 - Math.pow(1 - progress, 3);
+    el.textContent = Math.round(ease * target);
+    if (progress < 1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+}
+
+// ============================================
+// PARTICLES — lightweight canvas
+// ============================================
+(function initParticles() {
+  const canvas = document.getElementById('particles-canvas');
+  const ctx = canvas.getContext('2d');
+  let W, H, particles = [];
+
+  const COLORS = ['rgba(0,212,255,', 'rgba(123,47,255,', 'rgba(255,140,0,'];
+
+  function resize() {
+    W = canvas.width  = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  }
+
+  function Particle() {
+    this.x  = Math.random() * W;
+    this.y  = Math.random() * H;
+    this.vx = (Math.random() - 0.5) * 0.35;
+    this.vy = (Math.random() - 0.5) * 0.35;
+    this.r  = Math.random() * 2 + 0.5;
+    this.color = COLORS[Math.floor(Math.random() * COLORS.length)];
+    this.alpha = Math.random() * 0.5 + 0.15;
+  }
+
+  Particle.prototype.update = function() {
+    this.x += this.vx;
+    this.y += this.vy;
+    if (this.x < 0 || this.x > W) this.vx *= -1;
+    if (this.y < 0 || this.y > H) this.vy *= -1;
+  };
+
+  Particle.prototype.draw = function() {
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+    ctx.fillStyle = this.color + this.alpha + ')';
+    ctx.fill();
+  };
+
+  function createParticles(n) {
+    particles = [];
+    for (let i = 0; i < n; i++) particles.push(new Particle());
+  }
+
+  function drawConnections() {
+    const MAX_DIST = 130;
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < MAX_DIST) {
+          const alpha = (1 - dist / MAX_DIST) * 0.12;
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.strokeStyle = `rgba(0,212,255,${alpha})`;
+          ctx.lineWidth = 0.8;
+          ctx.stroke();
+        }
+      }
+    }
+  }
+
+  function loop() {
+    ctx.clearRect(0, 0, W, H);
+    drawConnections();
+    particles.forEach(p => { p.update(); p.draw(); });
+    requestAnimationFrame(loop);
+  }
+
+  resize();
+  createParticles(70);
+  loop();
+
+  window.addEventListener('resize', () => {
+    resize();
+    createParticles(70);
+  });
+})();
+
+// ============================================
+// INIT
+// ============================================
+window.addEventListener('DOMContentLoaded', () => {
+  renderCards('todos');
+
+  // Animate counters after short delay
+  const uniqueInst = new Set(PROYECTOS.map(p => p.institucion));
+  const uniqueCurs = new Set(PROYECTOS.map(p => p.curso));
+  setTimeout(() => {
+    animateCounter(document.getElementById('cnt-proyectos'),   PROYECTOS.length);
+    animateCounter(document.getElementById('cnt-cursos'),      uniqueCurs.size);
+    animateCounter(document.getElementById('cnt-instituciones'), uniqueInst.size);
+  }, 300);
+});
+</script>
+</body>
+</html>
