@@ -330,6 +330,7 @@
       background: linear-gradient(135deg, rgba(0,212,255,0.03) 0%, rgba(123,47,255,0.03) 100%);
       opacity: 0;
       transition: var(--transition);
+      pointer-events: none; /* Fix: no interceptar clics sobre el botón */
     }
     .card:hover {
       border-color: var(--border-hover);
@@ -445,6 +446,8 @@
       text-decoration: none;
       transition: var(--transition);
       cursor: pointer;
+      position: relative;
+      z-index: 2; /* Fix: sobre el overlay ::before del card */
     }
     .btn-ver:hover {
       background: rgba(0,212,255,0.18);
